@@ -64,13 +64,27 @@ Optional (recommended):
 
 | Service | What it's for | Where to get it |
 |---|---|---|
-| **Google Gemini** | picks better what to show on screen | https://aistudio.google.com/app/apikey (free) |
+| **Google Gemini** | picks the right footage for each scene — **strongly recommended** | https://aistudio.google.com/app/apikey — ⚠️ **PAID / billing must be ON** (see warning below) |
 | **Pexels** | free real footage/photos | https://www.pexels.com/api/ |
 | **Pixabay** | free real footage/photos | https://pixabay.com/api/docs/ |
 
 > 💡 You don't need ALL the keys. Minimum to start: **HeyGen + ElevenLabs**
 > (avatar + voice) and **kie.ai** (AI visuals). Add **Pexels/Pixabay** when you want
 > real footage — without them you'll mostly get AI images.
+
+> ⚠️ **IMPORTANT — Google Gemini must be a PAID (billing-enabled) API key.**
+> Gemini is the "brain" that matches the right footage to each scene. On the
+> **free** tier the quota runs out after just a few scenes → you get *"quota
+> exceeded"* errors, the footage stops matching the script, and **your video comes
+> out bad / random**. This is the #1 reason people say "it doesn't work".
+>
+> - Open **https://aistudio.google.com/app/apikey** (or Google Cloud Console) and
+>   **turn on billing / a paid plan** for the API. It's **pay-as-you-go** and costs
+>   only **a few cents per video** (Gemini Flash is very cheap) — you simply need
+>   billing *enabled* so the quota isn't tiny.
+> - 🚫 This is **NOT** a **Google One** / **Gemini Advanced** subscription. Paying
+>   for any consumer Google plan does **nothing** for the API. It must be **API
+>   billing** in Google AI Studio / Google Cloud — they are completely separate things.
 
 ---
 
@@ -234,7 +248,7 @@ The app is free; you only pay for the services you use. The app has a built-in
   ~15% of beats where it appears → controlled cost.
 - **kie.ai**: per generated image/video (Veo costs more than nano-banana images).
 - **Pexels / Pixabay / Wikimedia / Openverse**: **free**.
-- **Google Gemini**: nearly free (small usage).
+- **Google Gemini**: pay-as-you-go — **billing must be enabled** (the free tier is too small, see §2). Still only a few cents per video.
 
 > 💡 To keep costs down: **Real footage** mode (free) + a low avatar %, and
 > **AI media = Images** rather than Video.
@@ -246,6 +260,7 @@ The app is free; you only pay for the services you use. The app has a built-in
 | Symptom | Fix |
 |---|---|
 | **Mac: "…is damaged and can't be opened"** | Not actually damaged — macOS blocks files that came from the internet. Fix once: open **Terminal**, type `xattr -cr ` + a space, **drag the app folder** into the window, press **Enter**. Then double-click again. (See §3.) |
+| **Footage looks random / off-topic, or the video came out bad** | Your **Gemini** key is on the **free tier** and hit its quota (*"quota exceeded / 429"*). Turn on **billing** for the Gemini API (pay-as-you-go, cents per video). ⚠️ This is **API billing, NOT Google One** — a Google One/Gemini Advanced subscription does nothing here. See §2. |
 | Avatar stuck on "Preparing" / "Error" | Check the **HeyGen key** (Settings). A blurry or moderation-rejected photo fails — try another photo. |
 | "ELEVENLABS…" / no voice | Missing ElevenLabs key or empty **voice_id**. Click "Load voices" and pick one. |
 | kie.ai error ("code 402 / 401") | 402 = out of credits on kie.ai; 401 = invalid key. Top up / fix the key. |
