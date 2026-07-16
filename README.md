@@ -26,7 +26,7 @@ provider for each — **you only need keys for what you actually use**:
 
 | The job | Your options | Required? |
 |---|---|---|
-| 🎙️ **The Voice** | HeyGen *(default)* · ElevenLabs · OpenAI · MiniMax · GenAIPro · 69labs | **yes** — pick one |
+| 🎙️ **The Voice** | ElevenLabs *(default)* · GenAIPro · 69labs · HeyGen · MiniMax | **yes** — pick one |
 | 🖼️ **The Pictures** | *Real:* Pexels · Pixabay · Wikimedia · Openverse · Archive.org · YouTube<br>*AI:* kie.ai *(default)* · 69labs · Magnific | **yes** — at least one |
 | 🧠 **The Brain** (picks what to show per sentence) | Google Gemini | **yes — and billing must be ON** |
 | 👤 **The Presenter** | HeyGen | **no** — skip it for a faceless video |

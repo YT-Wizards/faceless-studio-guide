@@ -48,14 +48,14 @@ You only pay for the ones you use. **You do not need every key in this guide.**
 
 | Option | You need | Notes |
 |---|---|---|
-| **HeyGen** | a HeyGen key | this is the **default** if you change nothing |
-| **ElevenLabs** | an ElevenLabs key | the best-known; large voice library |
-| **OpenAI** | an OpenAI key | |
-| **MiniMax** | a MiniMax key | |
-| **GenAIPro** | a GenAIPro key | |
-| **69labs** | a 69labs key | |
+| **ElevenLabs** | an ElevenLabs key | **the default** — the best known, huge voice library. Click **"Load voices"** to pick one from a list. |
+| **GenAIPro** | a GenAIPro key | an ElevenLabs reseller — same voices, different billing |
+| **69labs** | a 69labs key | ElevenLabs / EdgeTTS / voice cloning, all through one gateway |
+| **HeyGen** | a HeyGen key | convenient if you already use HeyGen for a presenter. Also has a **"Load voices"** picker. |
+| **MiniMax** | a MiniMax key **+ Group ID** | cheap, good quality, supports voice cloning |
 
-Set it in **Settings → Voice provider**, then pick the actual voice.
+Set it in **Settings → Voice provider**. The page then shows the key field for the
+provider you picked, plus its voice field — you don't need the other providers' keys.
 
 ### 🖼️ The Pictures — pick at least one source
 
