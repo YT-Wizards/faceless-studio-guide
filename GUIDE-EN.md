@@ -1,305 +1,344 @@
-# Full guide — Faceless Video Generator
+# Faceless Video Generator — the complete guide
 
-> A step-by-step guide for **beginners**. No technical skills needed.
-> You paste a script, and the app builds a complete YouTube video: a voice
-> (ElevenLabs), a recurring presenter-avatar (HeyGen) that appears now and then,
-> and real or AI-generated images/videos to illustrate the narration. Everything
-> runs **on your own computer**.
+> **For everyone. No technical skills needed.**
+> You paste a script. The app builds a finished YouTube video — narration, visuals,
+> and (optionally) a presenter on camera. Everything runs **on your own computer**.
 
 ---
 
-## 1. How it works (in 30 seconds)
+## 1. What actually happens (in 30 seconds)
 
 ```
-Your script (text)
-      │
-      ▼
-1) ElevenLabs reads the script out loud  →  the video's voice
-      │
-      ▼
-2) The app splits the narration into small "beats" (using the voice's timing)
-      │
-      ▼
-3) For each beat:
-      • sometimes → the AVATAR talks on screen (HeyGen)
-      • the rest  → an image/video illustrating the sentence
-                    (real footage from the internet  OR  an AI image — your choice)
-                    still photos get a slow zoom (the "Ken Burns" effect)
-      │
-      ▼
-4) Everything is assembled into a single MP4 video, ready for YouTube
+        Your script (plain text)
+                 │
+                 ▼
+   1. A VOICE reads it out loud                    → the narration
+                 │
+                 ▼
+   2. The app cuts the narration into short "scenes"
+      (a few seconds each, following the voice's timing)
+                 │
+                 ▼
+   3. For every scene, it finds something to show
+      • real footage from the internet, and/or
+      • an AI-generated image or video
+      • now and then → your PRESENTER talks on camera (optional)
+                 │
+                 ▼
+   4. Everything is glued into one MP4, ready to upload
 ```
 
-You stay in control: how often the avatar appears, real vs AI, how long each
-image stays, the style, and more.
-
 ---
 
-## 2. What you need
+## 2. The four jobs — and you choose who does each
 
-### A computer
-- **Mac** or **Windows** (10/11). Nothing else to buy.
+This is the most important page in this guide. **The app doesn't force you onto any
+particular company.** A video needs four jobs done, and for each one you pick who does it:
 
-### Two free programs (installed once)
-1. **Node.js** (version 20 or newer) — the app's engine.
-   Download the "LTS" button at **https://nodejs.org/** and install (Next → Next).
-2. **FFmpeg** — assembles the video.
-   - **Windows** (easiest): download **ffmpeg-release-essentials.zip** from
-     **https://www.gyan.dev/ffmpeg/builds/**, unzip it, and **copy its `bin` folder
-     into the app folder** (the folder that contains `install.bat`). The app finds
-     it automatically — no PATH editing, no settings to change.
-   - **Mac**: open the **Terminal** app and type: `brew install ffmpeg`
-     (if `brew` doesn't exist, first install Homebrew from **https://brew.sh/**).
+| # | The job | What it means | Do I need it? |
+|---|---|---|---|
+| 🎙️ | **The Voice** | reads your script out loud | **Yes** — pick one |
+| 🖼️ | **The Pictures** | what's on screen while the voice talks | **Yes** — pick at least one |
+| 🧠 | **The Brain** | decides *what to show* for each sentence | **Yes** — required |
+| 👤 | **The Presenter** | a person on camera, now and then | **No** — optional |
 
-### API keys (the "passwords" for the services)
-You paste them **once** into the app (the **Settings** page). Required:
+You only pay for the ones you use. **You do not need every key in this guide.**
 
-| Service | What it's for | Where to get it |
+### 🎙️ The Voice — pick ONE
+
+| Option | You need | Notes |
 |---|---|---|
-| **HeyGen** | creates & animates the avatar | https://app.heygen.com/settings/api |
-| **ElevenLabs** | the voice that reads the script | https://elevenlabs.io → Profile → API Keys |
-| **kie.ai** | AI images/videos (nano-banana, Veo) | https://kie.ai/api-key |
+| **HeyGen** | a HeyGen key | this is the **default** if you change nothing |
+| **ElevenLabs** | an ElevenLabs key | the best-known; large voice library |
+| **OpenAI** | an OpenAI key | |
+| **MiniMax** | a MiniMax key | |
+| **GenAIPro** | a GenAIPro key | |
+| **69labs** | a 69labs key | |
 
-Optional (recommended):
+Set it in **Settings → Voice provider**, then pick the actual voice.
 
-| Service | What it's for | Where to get it |
+### 🖼️ The Pictures — pick at least one source
+
+**Real footage** (photos and video clips from the internet):
+
+| Source | Key needed? | What you get |
 |---|---|---|
-| **Google Gemini** | picks the right footage for each scene — **strongly recommended** | https://aistudio.google.com/app/apikey — ⚠️ **PAID / billing must be ON** (see warning below) |
-| **Pexels** | free real footage/photos | https://www.pexels.com/api/ |
-| **Pixabay** | free real footage/photos | https://pixabay.com/api/docs/ |
+| **Pexels** | yes (free to get) | good stock video + photos |
+| **Pixabay** | yes (free to get) | good stock video + photos |
+| **Wikimedia** | **no key** | historical/archive photos |
+| **Openverse** | **no key** | freely-licensed photos |
+| **Archive.org** | **no key** | old archive footage |
+| **YouTube** | no key, but ⚠️ see §9 | real clips from YouTube |
 
-> 💡 You don't need ALL the keys. Minimum to start: **HeyGen + ElevenLabs**
-> (avatar + voice) and **kie.ai** (AI visuals). Add **Pexels/Pixabay** when you want
-> real footage — without them you'll mostly get AI images.
+**AI-generated pictures** (when no good real footage exists, or if you prefer AI):
 
-> ⚠️ **IMPORTANT — Google Gemini must be a PAID (billing-enabled) API key.**
-> Gemini is the "brain" that matches the right footage to each scene. On the
-> **free** tier the quota runs out after just a few scenes → you get *"quota
-> exceeded"* errors, the footage stops matching the script, and **your video comes
-> out bad / random**. This is the #1 reason people say "it doesn't work".
->
-> - Open **https://aistudio.google.com/app/apikey** (or Google Cloud Console) and
->   **turn on billing / a paid plan** for the API. It's **pay-as-you-go** and costs
->   only **a few cents per video** (Gemini Flash is very cheap) — you simply need
->   billing *enabled* so the quota isn't tiny.
-> - 🚫 This is **NOT** a **Google One** / **Gemini Advanced** subscription. Paying
->   for any consumer Google plan does **nothing** for the API. It must be **API
->   billing** in Google AI Studio / Google Cloud — they are completely separate things.
-
----
-
-## 3. Installation (once)
-
-1. **Unzip the app.** Your coach sent you the app as a **ZIP file** — unzip it and
-   put the folder wherever you like (e.g. Documents). No GitHub, no git needed.
-
-2. **Install the dependencies** (once):
-   - **Windows**: double-click **`install.bat`**.
-   - **Mac**: double-click **`install.command`**.
-
-   > ⚠️ **Mac — if you see «"install.command" is damaged and can't be opened»:**
-   > don't worry, the file is **fine**. macOS just blocks files that arrived from the
-   > internet (Telegram, a download…). Unblock the folder once:
-   > 1. Open the **Terminal** app (Spotlight 🔍 → type "Terminal" → Enter).
-   > 2. Type `xattr -cr ` — **with a space at the end**, and **don't press Enter yet**.
-   > 3. **Drag the app folder** from Finder into the Terminal window — its path appears
-   >    automatically.
-   > 4. Press **Enter**. Done — the warning is gone for good.
-   > 5. Now double-click **`install.command`** again; it opens normally.
-
-   - A black window opens, downloads for ~1–2 min, then says **"Done!"**.
-
-That's all for installation.
-
----
-
-## 4. Launch the app (each time you use it)
-
-- **Mac**: double-click **`start.command`**.
-- **Windows**: double-click **`start.bat`**.
-
-A black window stays open (this is normal — it's the "engine", don't close it
-while you work), and your browser opens **http://localhost:3000**.
-
-To **stop**: close that black window (or use `stop.bat` / `stop.command`).
-
----
-
-## 5. Configure the keys (the **Settings** page)
-
-Top right, click **Settings**. Paste your keys:
-
-1. **ElevenLabs — API key**: paste the key.
-2. **ElevenLabs — voice_id**: this is the VOICE. Click **"Load voices"**, then pick
-   a voice from the list (it fills the field automatically).
-3. **kie.ai — API key**: paste the key.
-4. **HeyGen — API key**: paste the key.
-5. **HeyGen — voice_id**: leave as-is (the voice comes from ElevenLabs; this field
-   is only used if you make the avatar speak directly without ElevenLabs).
-6. **Pexels / Pixabay** (optional): paste if you have them.
-7. **Advanced** block: **AI provider** = `kie.ai` (default); **AI media** =
-   `Images` (cheaper) or `Video (Veo)` (more realistic, see §8).
-8. Click **Save**.
-
-> 🔒 The keys stay **on your computer** (local database). A saved key shows masked
-> (•••) — if you don't touch it, it won't change.
-
----
-
-## 6. Create an avatar (the **Avatars** page)
-
-The avatar is your recurring presenter — created once, reusable everywhere.
-
-1. **Name**: e.g. "Narrator Alex".
-2. **Channel (optional)**: leave "All" to make it available everywhere.
-3. Choose **ONE** of the two options:
-   - **Reference image**: click "Choose file" and upload a sharp, front-facing,
-     well-lit photo. **OR**
-   - **Text description**: describe the person in English
-     (e.g. *"a friendly man in his 30s, short brown hair, blue shirt"*) — the app
-     generates the image via nano-banana.
-4. (Option) **Avatar IV engine** checked = more realistic (uses more credits).
-5. **Create avatar**.
-
-The avatar appears in the grid with a status:
-- **Preparing… / Training…**: wait (a few seconds to a few minutes).
-- **Ready** ✅: usable in a video.
-- **Error**: see the message (often: missing HeyGen key / photo rejected).
-
----
-
-## 7. Create a channel (the **Channels** page) — optional but handy
-
-A **channel** = a set of default settings, so you don't re-configure everything
-each time. Fields:
-
-- **Name**: e.g. "History".
-- **Visual mode**: `Mix` (real + AI), `Real footage` (real only) or `AI images`.
-- **AI image style (look / animation)**: the style of the AI visuals
-  (e.g. *"cinematic, photo realistic"*). This is your **style / animation prompt**.
-- **Interval (s)**: how long each image/clip stays on screen (e.g. 4–6 s).
-- **Format**: `1920x1080` (classic YouTube) or `1080x1920` (vertical Shorts).
-- **Visual prompt (what to show per beat)**: your **"split" prompt**. It guides
-  WHAT is searched/shown for each sentence of the narration. **Leave empty** for
-  default behavior, or write e.g.:
-  *"Historical documentary. For each line, give a 3–8 word visual query of concrete
-  nouns: places, objects, real archive footage. Avoid the abstract."*
-
-Click **Create channel**. To change it later: **Edit** on the channel.
-
----
-
-## 8. Create a video (the **Create a video** page)
-
-1. **Title (optional)**: to find it again.
-2. **Channel**: pick one (it pre-fills mode, style, prompt, interval, format) — or
-   "None — manual settings".
-3. **Script**: paste the full narration text.
-4. **Avatar**: pick a **Ready** avatar, or "None" (faceless video).
-5. **Visual mode**: `AI images`, `Real footage`, or `Mix`.
-6. **Real / AI balance** (in Mix mode): e.g. 80% real / 20% AI.
-7. **Seconds per visual**: how long each image/clip lasts.
-8. **Avatar on screen (%)**: how often the avatar appears (e.g. 15% = "now and
-   then"). Disabled if no avatar is chosen.
-9. **Create the video**.
-
-You're taken to the tracking page: the steps show live (voice → beats → visuals →
-assembly).
-
----
-
-## 9. Track the render & get the video (the **Jobs** page)
-
-- Each video shows its **status** (`running`, `done`, `error`) and its **mode**.
-- When **done**: click **⬇ mp4** to download, or **Follow** to see details and play it.
-
-⏱️ **How long?** Depends on script length and mode. The slowest parts are the
-avatar (HeyGen) and AI video (Veo). A short video: a few minutes; a long one with
-lots of avatar: 10–30 min. That's normal.
-
----
-
-## 10. Tips for a REALISTIC result (important)
-
-"Stock" footage (Pexels/Pixabay) can look too "stock-photo". For an authentic
-result like the good YouTube channels:
-
-- **Favor real footage**: push the balance toward **80–100% real**.
-- **For the AI part, use Veo**: Settings → Advanced → **AI media = Video (Veo)**.
-  Veo produces far more realistic shots than plain images (but costs more).
-- **Craft the channel's "Visual prompt"**: ask for concrete imagery (real places,
-  objects, archives) rather than abstract concepts.
-- **Avatar "now and then"**: 15–25% is enough for a recurring presenter without
-  overdoing it.
-- **YouTube footage**: a YouTube source is available among the footage sources. By
-  default it only uses **Creative-Commons** clips (clips the uploader allowed others
-  to reuse — much lower copyright risk). ⚠️ You are responsible for what you publish.
-
----
-
-## 11. How much does it cost?
-
-The app is free; you only pay for the services you use. The app has a built-in
-**Cost Monitoring** page that tracks the generation spend per video.
-
-- **ElevenLabs**: by the number of characters read (limited free tier, then subscription).
-- **HeyGen**: in credits, mainly for the avatar (Avatar IV ≈ 3 s = 1 credit;
-  roughly $1.50–4/min depending on plan). The avatar is only generated for the
-  ~15% of beats where it appears → controlled cost.
-- **kie.ai**: per generated image/video (Veo costs more than nano-banana images).
-- **Pexels / Pixabay / Wikimedia / Openverse**: **free**.
-- **Google Gemini**: pay-as-you-go — **billing must be enabled** (the free tier is too small, see §2). Still only a few cents per video.
-
-> 💡 To keep costs down: **Real footage** mode (free) + a low avatar %, and
-> **AI media = Images** rather than Video.
-
----
-
-## 12. Troubleshooting (common problems)
-
-| Symptom | Fix |
+| Option | You need |
 |---|---|
-| **Mac: "…is damaged and can't be opened"** | Not actually damaged — macOS blocks files that came from the internet. Fix once: open **Terminal**, type `xattr -cr ` + a space, **drag the app folder** into the window, press **Enter**. Then double-click again. (See §3.) |
-| **Footage looks random / off-topic, or the video came out bad** | Your **Gemini** key is on the **free tier** and hit its quota (*"quota exceeded / 429"*). Turn on **billing** for the Gemini API (pay-as-you-go, cents per video). ⚠️ This is **API billing, NOT Google One** — a Google One/Gemini Advanced subscription does nothing here. See §2. |
-| Avatar stuck on "Preparing" / "Error" | Check the **HeyGen key** (Settings). A blurry or moderation-rejected photo fails — try another photo. |
-| "ELEVENLABS…" / no voice | Missing ElevenLabs key or empty **voice_id**. Click "Load voices" and pick one. |
-| kie.ai error ("code 402 / 401") | 402 = out of credits on kie.ai; 401 = invalid key. Top up / fix the key. |
-| "FFmpeg failed" / no final video | FFmpeg isn't found. **Windows**: copy ffmpeg's `bin` folder into the app folder (see §2). **Mac**: `brew install ffmpeg`. *(Advanced: open full settings — link at the bottom of Settings — and set `FFMPEG_PATH` to the path of `ffmpeg.exe`.)* |
-| No real footage found | Add a **Pexels** and/or **Pixabay** key (Settings). Without them, the app falls back to AI. |
-| The video looks too "stock" | See §10: more real, Veo for AI, a better visual prompt. |
-| The black window (Terminal/CMD) closed | That's the engine — relaunch `start.command` / `start.bat`. |
-| Vertical format (Shorts) | Create a channel with **Format = 1080x1920** and select it. |
+| **kie.ai** | a kie.ai key — *this is the default* |
+| **69labs** | a 69labs key |
+| **Magnific** | a Magnific key |
+
+> 💡 **You'll usually want both**: real footage first, AI as the backup for scenes
+> where nothing real fits. That's what "Mix" mode does.
+
+### 🧠 The Brain — required
+
+**Google Gemini** reads each sentence and decides what should be on screen. Without it
+**the app will not run** — it stops with an error.
+
+> ⚠️ **Your Gemini key must have BILLING TURNED ON.** This is the single most common
+> reason people say "it doesn't work". On the free tier the quota runs out after a few
+> scenes → the app can't pick visuals → **your video comes out random and wrong**.
+>
+> - Turn on billing at **https://aistudio.google.com/app/apikey** (or Google Cloud Console).
+>   It's pay-as-you-go and costs **a few cents per video**. You just need billing *enabled*
+>   so the quota isn't tiny.
+> - 🚫 **A Google One / Gemini Advanced subscription does NOTHING here.** That's a consumer
+>   plan. You need **API billing**. They are completely separate things.
+
+### 👤 The Presenter — optional
+
+A recurring person who appears on camera now and then. Made once, reused forever.
+Needs a **HeyGen** key. **Skip this entirely** if you want a faceless video — everything
+else works without it.
 
 ---
 
-## 13. Where are my files stored?
+## 3. What you need on your computer
 
-- **Settings, avatars, history**: in a hidden folder of your user profile,
-  `~/.faceless-studio` (Mac/Linux) or `C:\Users\YOU\.faceless-studio` (Windows).
-  It is **never** deleted by an app update.
-- **Generated videos**: in that same folder, under `runs/<name>/final.mp4`
-  (also downloadable from the **Jobs** page).
-
----
-
-## 14. How to update the app
-
-You'll receive a **new ZIP** from your coach when there's an update. Your keys,
-avatars and videos are kept (they live in `~/.faceless-studio`, outside the app
-folder). Full steps: see **[UPDATE.md](./UPDATE.md)**.
+- A **Mac** or **Windows** (10/11).
+- **Node.js** — the app's engine. Get the **LTS** button at **https://nodejs.org/**, install (Next → Next).
+- **FFmpeg** — the tool that glues the video together.
+  - **Windows** (easiest): download **ffmpeg-release-essentials.zip** from
+    **https://www.gyan.dev/ffmpeg/builds/**, unzip it, and **copy its `bin` folder into
+    the app folder** (the folder with `install.bat` in it). The app finds it by itself —
+    nothing to configure.
+  - **Mac**: open the **Terminal** app and type: `brew install ffmpeg`
+    (no `brew`? install Homebrew first from **https://brew.sh/**).
 
 ---
 
-## Quick recap
+## 4. Install it (once)
 
-1. Install **Node.js** + **FFmpeg** (once).
-2. Unzip the app → `install.command` / `install.bat`, then `start.command` / `start.bat`.
-3. **Settings** → paste HeyGen + ElevenLabs + kie.ai → Save.
-4. **Avatars** → create an avatar (photo or description) → wait for "Ready".
-5. *(optional)* **Channels** → create a channel with your style + visual prompt.
-6. **Create a video** → paste the script, pick the avatar and mode → **Create the video**.
-7. **Jobs** → download the **mp4**.
+1. **Unzip the app.** Your coach sends it as a ZIP. Put the folder anywhere (e.g. Documents).
+2. **Windows**: double-click **`install.bat`** · **Mac**: double-click **`install.command`**.
+3. A black window opens, downloads for a minute or two, says **"Done!"**.
 
-Tip: use the **FR / EN** toggle (top right) to switch the interface language.
+> ⚠️ **Mac — «"install.command" is damaged and can't be opened»?**
+> The file is **fine**. macOS blocks anything that arrived from the internet. Fix it once:
+> 1. Open **Terminal** (Spotlight 🔍 → type "Terminal" → Enter).
+> 2. Type `xattr -cr ` — **with a space at the end**. Don't press Enter yet.
+> 3. **Drag the app folder** from Finder into the Terminal window. Its path appears by itself.
+> 4. Press **Enter**. Done, permanently.
+> 5. Double-click `install.command` again — it opens normally.
 
-Happy filming! 🎬
+---
+
+## 5. Start it (every time)
+
+- **Windows**: double-click **`start.bat`** · **Mac**: double-click **`start.command`**.
+
+A black window opens and stays open. **That window is the engine — don't close it while
+you work.** Your browser opens at **http://localhost:3000**.
+
+To stop: close that black window (or use `stop.bat` / `stop.command`).
+
+---
+
+## 6. Put in your keys (the **Settings** page)
+
+Click **Settings**, top right. Paste only the keys for the jobs you chose in §2:
+
+- **Google Gemini** — required (billing on! see §2).
+- **Your voice provider's key** — then pick the voice itself.
+- **kie.ai** — for AI pictures.
+- **Pexels / Pixabay** — for real footage (optional, but strongly recommended).
+- **HeyGen** — only if you want a presenter, **or** if you're using HeyGen as your voice.
+
+Click **Save**.
+
+> 🔒 Your keys stay **on your computer**, in a local file. A saved key shows as dots (•••).
+> If you don't touch that field, it won't change.
+
+There's also a **full settings** page (link at the bottom) with every knob in the app.
+You don't need it to make videos.
+
+---
+
+## 7. Make your first video
+
+Go to **Create a video**:
+
+1. **Title** *(optional)* — so you can find it later.
+2. **Channel** *(optional)* — a saved preset, see §8. Or "None — manual settings".
+3. **Script** — paste your full narration.
+4. **Avatar** — pick a ready presenter, or **None** for a faceless video.
+5. **Visual mode** — `Real footage`, `AI images`, or `Mix` (both).
+6. **Real / AI balance** (in Mix) — e.g. 80% real / 20% AI.
+7. **Seconds per visual** — how long each shot stays on screen (4–6s is normal).
+8. **Avatar on screen (%)** — how often the presenter appears. 15–25% is plenty.
+9. **Create the video.**
+
+You land on the tracking page and watch it work, step by step.
+
+---
+
+## 8. Presenters and Channels (both optional)
+
+**Avatars page** — make a presenter once:
+- Give it a **name**.
+- Either **upload a photo** (sharp, front-facing, well-lit) **or** describe the person in
+  words and let the app draw them.
+- **Avatar quality**: there are two engines. The higher-quality one looks better but
+  costs roughly **3× more per minute** (see §11). Your choice — it is not free.
+- Wait for **Ready** ✅.
+
+**Channels page** — save a preset so you don't re-configure every time:
+- Name, visual mode, AI style, seconds per visual, format (`1920x1080` normal / `1080x1920`
+  Shorts), voice speed, and a **visual prompt** that steers *what* gets shown.
+- Example visual prompt: *"Historical documentary. For each line, give a 3–8 word visual
+  query of concrete nouns: places, objects, real archive footage. Avoid the abstract."*
+
+---
+
+## 9. ⚠️ About YouTube footage — read this
+
+**YouTube is switched ON by default**, and it sits **first** in the list of sources.
+
+**There is no copyright filter.** The app does **not** check licences and does **not**
+limit itself to Creative-Commons clips. It picks whatever fits your scene best.
+
+> **You are responsible for what you publish.** If you don't want that risk, turn YouTube
+> off: **full settings → `YT_DLP_ENABLED` → `0` → Save.** Everything still works — the
+> app just uses Pexels/Pixabay/Wikimedia/AI instead.
+
+*(If you previously read that this was "off by default" or "Creative Commons only" —
+that was wrong, and this guide is the correction.)*
+
+---
+
+## 10. While it's running — the two rules
+
+### 🛑 Rule 1: don't let your computer go to sleep
+
+This is the **number one** cause of a ruined run. A dark screen is fine — a **sleeping
+computer** is not. They're two different settings:
+
+| | Result |
+|---|---|
+| **Screen turns off** | ✅ fine, the video keeps building |
+| **Computer goes to sleep** | ❌ everything stops |
+
+**Windows**: Settings → System → **Power & battery** → **Screen and sleep** →
+**"Sleep: put my device to sleep after" → Never**. On a laptop set **both** columns
+(battery + plugged in), and keep it plugged in.
+**Also: don't close the lid** — that sleeps it. (Power → "Choose what closing the lid does" → **Do nothing**.)
+
+**Mac**: System Settings → **Lock Screen / Battery** → set the computer to never sleep
+while plugged in.
+
+### ⏱️ Rule 2: know how long it really takes
+
+Be realistic — this is not instant:
+
+| Video | Roughly |
+|---|---|
+| A few minutes long | several minutes |
+| 10–20 minutes long | tens of minutes to a couple of hours |
+| **1 hour+ (hundreds of scenes)** | **many hours — plan for half a day** |
+
+Very long videos are genuinely heavy. If you can, **split them into parts** — it's far
+more reliable than one giant run.
+
+---
+
+## 11. If a run stops or breaks — **Resume it, don't restart**
+
+If a run is interrupted (sleep, a crash, you stopped it, the black window closed), you
+**do not** have to start over and pay again.
+
+1. Open the run (from **Jobs**).
+2. If it still says *running* but nothing is happening, click **Stop**.
+3. A **Resume run** button appears → click it.
+4. It picks up where it left off and **reuses everything already generated** — you are
+   not charged twice for finished scenes.
+
+> ✅ Resume needs the narration and the scene plan to already exist. If the run died in
+> the first few seconds (before those were made), there's nothing to resume — just start
+> a new one; nothing was lost.
+
+> 🗑️ **Careful with Delete.** Deleting a job **permanently erases its files from your
+> disk** — the finished video and every generated scene. It cannot be undone. If a run is
+> merely stuck, use **Stop → Resume** instead. (Your spending history is kept on the
+> **Costs** page either way.)
+
+---
+
+## 12. What it costs
+
+The app is free. You pay only the services you chose in §2. The **Costs** page tracks
+what each video actually spent.
+
+| Service | Roughly |
+|---|---|
+| **Gemini** (the Brain) | a few cents per video |
+| **ElevenLabs** (if used) | ~$0.22 per 1,000 characters |
+| **HeyGen presenter** | ~**$3/min** high quality · ~**$1/min** standard — and only for the ~15% of scenes where they appear |
+| **kie.ai** images | ~$0.02 per image |
+| **kie.ai** Veo video | ~$0.40 per **second** — expensive, off by default |
+| **Pexels · Pixabay · Wikimedia · Openverse · Archive** | **free** |
+
+> ⚠️ **These are the app's own estimates, not official price lists.** Providers change
+> pricing; always check your own dashboard for what you're actually being billed.
+
+**To spend less:** use **Real footage** mode, keep the presenter low (or none), keep AI on
+**images** rather than video, and use the **standard** avatar quality.
+
+---
+
+## 13. When something goes wrong
+
+| What you see | What it means / what to do |
+|---|---|
+| **Mac: "…is damaged and can't be opened"** | Not damaged — macOS blocks internet downloads. Fix once with `xattr -cr` (see §4). |
+| **Footage is random / off-topic; video came out bad** | Your **Gemini** key is on the free tier and hit its quota. **Turn on API billing** (§2). This is the #1 cause. Not Google One — API billing. |
+| **The run just stopped, no error** | Almost always the computer went to sleep (§10). **Stop → Resume** (§11). |
+| **"FFmpeg failed" / no final video** | FFmpeg isn't found. **Windows**: copy ffmpeg's `bin` folder into the app folder. **Mac**: `brew install ffmpeg`, then restart the app. |
+| **Avatar stuck on "Preparing" / "Error"** | Check the **HeyGen** key. A blurry or rejected photo fails — try another. |
+| **No voice / voice error** | The key for your chosen voice provider is missing, or no voice is selected. |
+| **kie.ai "402" / "401"** | **402** = out of credits, top up. **401** = wrong key. |
+| **No real footage found** | Add a **Pexels** and/or **Pixabay** key. Without them you'll mostly get AI. |
+| **The black window closed** | That was the engine. Relaunch `start.bat` / `start.command`, then **Resume** the run (§11). |
+| **I want vertical / Shorts** | Make a channel with **Format = 1080x1920** and use it. |
+
+---
+
+## 14. Where your stuff lives
+
+- **Keys, presenters, history, videos**: in a hidden folder in your user profile —
+  `C:\Users\YOU\.faceless-studio` (Windows) or `~/.faceless-studio` (Mac).
+- **An app update never touches it.** Your keys and videos survive updates.
+- Finished videos: in that folder under `runs/<name>/final.mp4` — or just click **⬇ mp4**
+  on the **Jobs** page.
+
+---
+
+## 15. Updating
+
+Your coach sends a new ZIP. Your keys, presenters and videos are kept (they live outside
+the app folder — see §14). Steps: **[UPDATE.md](./UPDATE.md)**.
+
+---
+
+## The 60-second recap
+
+1. Install **Node.js** + **FFmpeg** — once.
+2. Unzip the app → `install` → `start`.
+3. **Settings** → **Gemini (billing ON!)** + your **voice** key + **kie.ai** → Save.
+   Add **Pexels/Pixabay** for real footage. **HeyGen** only if you want a presenter.
+4. *(optional)* **Avatars** → make a presenter. **Channels** → save a preset.
+5. **Create a video** → paste script → **Create**.
+6. **Don't let the computer sleep.** If it stops → **Stop → Resume**, never restart from zero.
+7. **Jobs** → **⬇ mp4**.
+
+Happy filming 🎬
