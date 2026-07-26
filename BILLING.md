@@ -94,10 +94,16 @@ The app supports several. **You only need a key for the one you choose** in
 > wrong one will simply be rejected.
 
 ### Other voice options
-**GenAIPro** (an ElevenLabs reseller — same voices, different billing), **69labs**
-(EdgeTTS / ElevenLabs / voice cloning through one gateway), and **HeyGen** (convenient if
-you already use it for an avatar). We haven't verified current rates for these — check each
-provider's own dashboard before committing.
+
+**69labs** — one gateway to three voice engines: **EdgeTTS** (Microsoft's free voices),
+**ElevenLabs**, or **your own cloned voice**. Subscription from **$25/mo**, with a free tier
+(5,000 characters/month) you can test on. Its headline TTS rate looks dramatically cheaper
+than ElevenLabs — but that reflects the **EdgeTTS** engine, which does not sound like
+ElevenLabs. Pick the engine deliberately in Settings, and judge by ear.
+
+**GenAIPro** — an ElevenLabs reseller: same voices, different billing. **HeyGen** — handy
+if you're already paying for an avatar. We haven't verified current rates for these two —
+check their own dashboards before committing.
 
 ---
 
@@ -157,8 +163,16 @@ Used when no real footage fits a scene. **Default: kie.ai.**
 > want a few images.
 
 ### 69labs
-Grok images/video, and also usable as a voice gateway. We haven't verified their current
-rates — check your own dashboard.
+
+| | |
+|---|---|
+| **Billing model** | Monthly subscription (auto-renewing), plus optional one-time credit packs on top |
+| **Free tier** | Yes, ongoing: ~**10 images** and ~**5 videos** per month, 5,000 TTS characters, files kept 1 day, no voice cloning |
+| **Cheapest paid plan** | **$25/mo** (Starter) · credit packs from **$15** |
+| **Sign up** | https://69labs.vip |
+
+> Their **per-clip video cost isn't published anywhere public** — you only see credits-per-
+> generation after signing up. Test on the free tier before committing to a plan.
 
 ---
 
