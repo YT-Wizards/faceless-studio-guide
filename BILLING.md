@@ -101,9 +101,23 @@ The app supports several. **You only need a key for the one you choose** in
 than ElevenLabs — but that reflects the **EdgeTTS** engine, which does not sound like
 ElevenLabs. Pick the engine deliberately in Settings, and judge by ear.
 
-**GenAIPro** — an ElevenLabs reseller: same voices, different billing. **HeyGen** — handy
-if you're already paying for an avatar. We haven't verified current rates for these two —
-check their own dashboards before committing.
+**GenAIPro** — an ElevenLabs reseller: same voices, different billing.
+
+| | |
+|---|---|
+| **Billing model** | 💳 Prepaid credit packs — **no subscription, no auto-renewal** |
+| **Minimum** | **$8** (250,000 credits, valid 30 days) |
+| **Free tier** | Exists, but the allowance isn't published — check it in your dashboard |
+| **Get the key** | **genaipro.io** → sign in → Avatar → **Manage Account → API Key** |
+
+> ⚠️ **Use exactly `genaipro.io`.** Several similar domains exist (`.co`, `.cc`, `.co.in`,
+> `.vn`) that are unrelated sites. Check the address bar before entering payment details.
+
+> Their price for the **ElevenLabs** voices specifically is **not published**. Their own
+> in-house voices are much cheaper than ElevenLabs — but those are different voices. Buy the
+> smallest pack first, generate one test, and see what it actually consumed before topping up.
+
+**HeyGen** — handy if you're already paying for an avatar. Rates not separately verified.
 
 ---
 
