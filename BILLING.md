@@ -142,9 +142,23 @@ Used when no real footage fits a scene. **Default: kie.ai.**
 > *ratio* holds. **Keep "AI media" on "Images only"** unless you specifically want AI video
 > and have budgeted for it. One operator left it on video and was surprised by a $40 bill.
 
-### Other AI options
-**69labs** (Grok image/video) and **Magnific** (Mystic images, Hailuo video). Both are
-selectable alternatives; check their dashboards for current rates.
+### Magnific — works differently from the others
+
+| | |
+|---|---|
+| **Billing model** | 📅 **Subscription only** — there is no pay-as-you-go, and **the free plan has no API access at all** |
+| **Cheapest plan with an API key** | **Premium** (≈ €15/mo) · Premium+ **$39/mo** · Pro **$250/mo** |
+| **Important** | Even on an "Unlimited" plan, **API calls still consume metered credits** — "unlimited" covers only their website |
+| **Get the key** | https://www.magnific.com/user/api-keys |
+| **Cost** | Per model, in credits: images from 1 to 2,100 credits; video 10–1,400 credits **per second** |
+
+> Unlike kie.ai (top up $5, pay per use), Magnific needs a **monthly plan** before the API
+> works at all. Fine if you already subscribe for their web tools — an odd fit if you just
+> want a few images.
+
+### 69labs
+Grok images/video, and also usable as a voice gateway. We haven't verified their current
+rates — check your own dashboard.
 
 ---
 
