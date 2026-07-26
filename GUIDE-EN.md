@@ -147,6 +147,11 @@ To stop: close that black window (or use `stop.bat` / `stop.command`).
 
 ## 6. Put in your keys (the **Settings** page)
 
+> 💳 **Before this step, read [BILLING.md](./BILLING.md).** It covers how each service
+> actually charges — which ones need money added before they'll work at all, which are free,
+> and the single biggest trap: **a normal subscription usually does NOT include API access**
+> (HeyGen especially). That one page prevents most "it doesn't work" situations.
+
 Click **Settings**, top right. Paste only the keys for the jobs you chose in §2:
 
 - **Google Gemini** — required (billing on! see §2).

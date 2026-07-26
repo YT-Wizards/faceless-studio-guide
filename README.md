@@ -5,6 +5,7 @@
 > 📦 You received the app as a **ZIP file** from your coach — this repository is its **documentation**. Start here:
 >
 > 📖 **Full step-by-step guide (no technical skills needed):** **[GUIDE-EN.md](./GUIDE-EN.md)**
+> 💳 **Paying for the services — read before your first video:** **[BILLING.md](./BILLING.md)**
 > 🔄 **Already installed — how to update:** **[UPDATE.md](./UPDATE.md)**
 
 ---
