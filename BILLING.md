@@ -263,9 +263,14 @@ each word falls. **Not needed if you let the app generate the voice.**
 | **Get the key** | https://console.groq.com/keys |
 | **Add a card (only if needed)** | https://console.groq.com/settings/billing |
 
-> One limit worth knowing: on the free tier an uploaded file must be **under 25 MB**
-> (100 MB once you add a card). Upload **mp3 / m4a**, not uncompressed WAV — a WAV hits
-> that ceiling within a few minutes of audio, while an mp3 of the same length is tiny.
+> One limit worth knowing: on the free tier an uploaded file must be **under 25 MB**.
+> Upload **mp3 / m4a**, not uncompressed WAV — a WAV hits that ceiling within a few minutes
+> of audio, while an mp3 of the same length is tiny. The app's 50-minute upload cap is set
+> from exactly this limit, so a normal mp3 narration always fits.
+>
+> ℹ️ Groq's paid "Developer" tier has been **closed to new upgrades** ("temporarily
+> unavailable due to high demand") — so free is currently the only option. That's fine:
+> everything this app does with Groq fits inside the free tier comfortably.
 
 ---
 
