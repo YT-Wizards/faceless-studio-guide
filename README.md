@@ -8,6 +8,11 @@
 > 💳 **Paying for the services — read before your first video:** **[BILLING.md](./BILLING.md)**
 > 🔄 **Already installed — how to update:** **[UPDATE.md](./UPDATE.md)**
 
+> 📊 **Using the analytics app too?** Connecting Google for **YouTube Channel AI VIP** —
+> including the third API most people miss, the one that unlocks thumbnail
+> **click-through rate**: **[CHANNEL-AI-GOOGLE-SETUP.md](./CHANNEL-AI-GOOGLE-SETUP.md)**
+> *(different product — nothing to do with making videos)*
+
 ---
 
 ## What it does
