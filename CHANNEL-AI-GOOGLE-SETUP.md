@@ -76,7 +76,7 @@ are the same evidence.
    - **Application type**: Web application
    - **Authorized redirect URIs** → add **exactly** this, no trailing slash:
      ```
-     http://localhost:3000/api/youtube/oauth/callback
+     http://localhost:3010/api/youtube/oauth/callback
      ```
      It must be `http://`, not `https://` — this is your own computer.
 
