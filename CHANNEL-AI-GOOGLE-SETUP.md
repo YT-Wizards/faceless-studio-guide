@@ -65,6 +65,13 @@ are the same evidence.
      - `https://www.googleapis.com/auth/yt-analytics.readonly`
      - `https://www.googleapis.com/auth/yt-analytics-monetary.readonly`
      - `https://www.googleapis.com/auth/youtube.readonly`
+   - **Branding** → fill in the two links Google now requires before it lets you publish
+     (the **Publish app** button stays grey with a tooltip about "homepage url and privacy
+     policy url" until you do):
+     - **Application home page**: `https://github.com/YT-Wizards/YouTube-Channel-AI-VIP`
+     - **Application privacy policy link**: `https://github.com/YT-Wizards/YouTube-Channel-AI-VIP/blob/main/PRIVACY.md`
+     - **Authorized domains** → **Add domain** → `github.com` → **Save**.
+     No logo, and nothing here is reviewed by Google — it is a form, not a check.
    - **Audience** → **Publish app**, so the status reads **In production**.
 
    > ⚠️ **Publish it — don't add yourself as a "test user".** An app left in *Testing* has
