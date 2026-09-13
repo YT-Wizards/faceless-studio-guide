@@ -74,6 +74,12 @@ are the same evidence.
      No logo, and nothing here is reviewed by Google — it is a form, not a check.
    - **Audience** → **Publish app**, so the status reads **In production**.
 
+   > ⚠️ **If Google shows "Branding verification issues"** — your home page URL "is not
+   > registered to you", your app name "does not uniquely identify your brand" — click
+   > **Cancel** and carry on. That is Google's *brand* review, and it only decides whether
+   > your app's name and logo show on the consent screen. It blocks neither publishing nor
+   > sign-in, and you cannot pass it with our GitHub link, because that site is ours.
+
    > ⚠️ **Publish it — don't add yourself as a "test user".** An app left in *Testing* has
    > its connection dropped by Google **every 7 days**, and you'll be reconnecting forever.
    > Publishing takes one click and does **not** require Google to review anything for an
